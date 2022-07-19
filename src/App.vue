@@ -1,28 +1,41 @@
 <template>
-<v-app id="inspire">
-    <v-navigation-drawer
-      v-model="drawer"
-      app
-    >
-      <!--  -->
-    </v-navigation-drawer>
+  <v-app id="inspire">
+    <template v-if="isAutorized">
+      <v-navigation-drawer v-model="drawer" app>
+        <!--  -->
+      </v-navigation-drawer>
 
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-
-      <v-toolbar-title>Application</v-toolbar-title>
-    </v-app-bar>
+      <v-app-bar app>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-toolbar-title>Главная</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-btn outlined> <v-icon>mdi-logout</v-icon> Выйти</v-btn>
+      </v-app-bar>
+    </template>
 
     <v-main>
-      <router-view/>
+      <v-progress-linear
+        indeterminate
+        height="4"
+        color="primary"
+        v-if="isLoading"
+      >
+      </v-progress-linear>
+      <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-  export default {
-    data: () => ({ drawer: null }),
-  }
+import { mapGetters } from "vuex";
+
+export default {
+  computed: {
+    ...mapGetters("user", { isAutorized: "getIsAutorized" }),
+    ...mapGetters({ isLoading: "getIsLoading" }),
+  },
+  data: () => ({ drawer: false, loader: false }),
+};
 </script>
 
 <style lang="scss">

@@ -9,12 +9,10 @@ import axios from "axios";
 export default {
   name: "Redirect-page",
   computed: {
-      ...mapGetters('user', ['getClientId', 'getClientSecret']),
+    ...mapGetters("user", ["getClientId", "getClientSecret"]),
   },
   methods: {
-    ...mapActions('user', [
-      'getApi'
-    ]),
+    ...mapActions("user", ["getApi"]),
     getToken(code) {
       axios
         .post(
@@ -23,7 +21,7 @@ export default {
         .then((response) => {
           const token = response.data.access_token;
           this.getApi(token);
-          this.$router.push("./projects-list");
+          this.$router.push("./home");
         })
         .catch((error) => {
           console.log(error);

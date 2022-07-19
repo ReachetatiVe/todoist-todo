@@ -22,7 +22,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn large color="primary" text @click="authorization">
-            <v-icon>mdi-login</v-icon> Авторизоваться
+            <v-icon>mdi-login</v-icon> Войти
           </v-btn>
         </v-card-actions>
       </v-card>

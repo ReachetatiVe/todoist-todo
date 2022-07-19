@@ -5,6 +5,7 @@ const state = () => ({
   clientId: "35ad8863b5bb48d2acbe404599b6d56b",
   clientSecret: "d35c80239d744591a42ba84f190a27cb",
   token: "",
+  isAutorized: false,
 });
 
 const getters = {
@@ -14,6 +15,9 @@ const getters = {
   getClientSecret: (state) => {
     return state.clientSecret;
   },
+  getIsAutorized: (state) => {
+    return state.isAutorized;
+  }
 };
 
 // actions
@@ -22,6 +26,7 @@ const actions = {
     const api = new TodoistApi(token);
     context.commit("setApi", api);
     context.commit("setToken", token);
+    context.commit("setIsAutorized", true);
   },
 };
 
@@ -36,6 +41,12 @@ const mutations = {
   setToken(state, token) {
     if (token) {
       state.token = token;
+    }
+    return;
+  },
+  setIsAutorized(state, payload) {
+    if (payload) {
+      state.isAutorized = payload;
     }
     return;
   },
