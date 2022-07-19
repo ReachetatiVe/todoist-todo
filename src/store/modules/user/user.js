@@ -1,8 +1,8 @@
 const state = () => ({
   items: [],
   checkoutStatus: null,
-  clientId: "65d3dc9ff5dc4d698a1288bb4a769065",
-  clientSecret: "7012a5dd7357481a94736d4304f3bc90",
+  clientId: "35ad8863b5bb48d2acbe404599b6d56b",
+  clientSecret: "d35c80239d744591a42ba84f190a27cb",
   token: "",
 });
 

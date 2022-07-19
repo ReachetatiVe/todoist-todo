@@ -1,0 +1,44 @@
+<template>
+  <div>Redirecting...</div>
+</template>
+
+<script>
+import { mapGetters } from "vuex";
+import axios from "axios";
+
+export default {
+  name: "Redirect-page",
+  computed: {
+    computed: {
+      ...mapGetters("user", ["getClientId", "getClientSecret"]),
+    },
+  },
+  methods: {
+    getToken(code) {
+      axios
+        .post(
+          `https://todoist.com/oauth/access_token?client_id=${this.getClientId}&client_secret=${this.getClientSecret}&code=${code}`
+        )
+        .then((response) => {
+          const token = response.data.access_token;
+          this.$store.dispatch("getApi", token);
+          this.$router.push("./projects-list");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  watch: {
+    $route: {
+      handler: function (route) {
+        if (route.query.code !== null && route.query.code !== undefined) {
+          this.getToken(route.query.code);
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+};
+</script>

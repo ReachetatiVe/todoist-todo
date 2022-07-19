@@ -7,8 +7,12 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'home',
+    name: 'auth',
     component: AuthView
+  },
+  {
+    path: '/authRedirect',
+    // name: 
   },
   {
     path: '/about',
