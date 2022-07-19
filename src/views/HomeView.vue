@@ -2,8 +2,16 @@
 <div></div>
 </template>
 <script>
+import { mapActions } from "vuex";
+
 export default {
+
   data: () => ({ loader: true }),
-  mounted() {},
+  methods: {
+    ...mapActions("projects", ["loadAllProjects"]),
+  },
+  mounted() {
+    this.loadAllProjects();
+  },
 };
 </script>
