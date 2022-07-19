@@ -3,17 +3,18 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import axios from "axios";
 
 export default {
   name: "Redirect-page",
   computed: {
-    computed: {
-      ...mapGetters("user", ["getClientId", "getClientSecret"]),
-    },
+      ...mapGetters('user', ['getClientId', 'getClientSecret']),
   },
   methods: {
+    ...mapActions('user', [
+      'getApi'
+    ]),
     getToken(code) {
       axios
         .post(
@@ -21,7 +22,7 @@ export default {
         )
         .then((response) => {
           const token = response.data.access_token;
-          this.$store.dispatch("getApi", token);
+          this.getApi(token);
           this.$router.push("./projects-list");
         })
         .catch((error) => {

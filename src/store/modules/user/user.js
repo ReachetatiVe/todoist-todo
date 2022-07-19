@@ -1,6 +1,7 @@
+import { TodoistApi } from "@doist/todoist-api-typescript";
+
 const state = () => ({
-  items: [],
-  checkoutStatus: null,
+  api: null,
   clientId: "35ad8863b5bb48d2acbe404599b6d56b",
   clientSecret: "d35c80239d744591a42ba84f190a27cb",
   token: "",
@@ -16,28 +17,27 @@ const getters = {
 };
 
 // actions
-const actions = {};
+const actions = {
+  getApi(context, token) {
+    const api = new TodoistApi(token);
+    context.commit("setApi", api);
+    context.commit("setToken", token);
+  },
+};
 
 // mutations
 const mutations = {
-  pushProductToCart(state, { id }) {
-    state.items.push({
-      id,
-      quantity: 1,
-    });
+  setApi(state, api) {
+    if (api) {
+      state.api = api;
+    }
+    return;
   },
-
-  incrementItemQuantity(state, { id }) {
-    const cartItem = state.items.find((item) => item.id === id);
-    cartItem.quantity++;
-  },
-
-  setCartItems(state, { items }) {
-    state.items = items;
-  },
-
-  setCheckoutStatus(state, status) {
-    state.checkoutStatus = status;
+  setToken(state, token) {
+    if (token) {
+      state.token = token;
+    }
+    return;
   },
 };
 
