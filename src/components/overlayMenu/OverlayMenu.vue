@@ -1,18 +1,24 @@
 <template>
-  <v-list>
-    <v-list-item-group v-model="model">
-      <v-list-item v-for="(item, i) in items" :key="i">
-        <v-list-item-icon>
-          <v-icon v-text="item.icon"></v-icon>
-        </v-list-item-icon>
-        <v-list-item-content>
-          <v-list-item-title v-text="item.text"></v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list-item-group>
-  </v-list>
+  <div>
+    <v-list>
+      <v-list-item-group v-model="model">
+        <v-list-item v-for="(item, i) in items" :key="i">
+          <v-list-item-icon>
+            <v-icon v-text="item.icon"></v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title v-text="item.text"></v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list-item-group>
+    </v-list>
+    <v-divider></v-divider>
+    <ProjectList/>
+  </div>
 </template>
 <script>
+import ProjectList from './OverlayProjectList.vue'
+
 export default {
   data: () => ({
     items: [
@@ -35,5 +41,8 @@ export default {
     ],
     model: 1,
   }),
+  components: {
+    ProjectList
+  }
 };
 </script>
