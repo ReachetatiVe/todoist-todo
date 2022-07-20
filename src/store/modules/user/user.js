@@ -17,7 +17,7 @@ const getters = {
   },
   getIsAutorized: (state) => {
     return state.isAutorized;
-  }
+  },
 };
 
 // actions
@@ -49,6 +49,11 @@ const mutations = {
       state.isAutorized = payload;
     }
     return;
+  },
+  clearUser(state) {
+    state.api = null;
+    state.token = "";
+    state.isAutorized = false;
   },
 };
 

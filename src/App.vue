@@ -1,40 +1,63 @@
 <template>
   <v-app id="inspire">
     <template v-if="isAutorized">
-      <v-navigation-drawer v-model="drawer" app>
-        <!--  -->
+      <v-navigation-drawer v-model="drawer" app :style="{padding:' 0 !important'}">
+        <OverlayMenu />
       </v-navigation-drawer>
 
       <v-app-bar app>
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Главная</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn outlined> <v-icon>mdi-logout</v-icon> Выйти</v-btn>
+        <v-btn outlined @click="logout"> <v-icon>mdi-logout</v-icon> Выйти</v-btn>
       </v-app-bar>
     </template>
 
     <v-main>
-      <v-progress-linear
+      <!-- <v-progress-linear
         indeterminate
         height="4"
         color="primary"
         v-if="isLoading"
       >
-      </v-progress-linear>
+      </v-progress-linear> -->
+      <v-overlay :value="isLoading">
+        <v-progress-circular indeterminate size="64"></v-progress-circular>
+      </v-overlay>
       <router-view />
     </v-main>
   </v-app>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
+import OverlayMenu from "./components/overlayMenu/OverlayMenu.vue";
 
 export default {
   computed: {
     ...mapGetters("user", { isAutorized: "getIsAutorized" }),
     ...mapGetters({ isLoading: "getIsLoading" }),
+    ...mapMutations("user", ["clearUser"]),
   },
-  data: () => ({ drawer: false, loader: false }),
+  data: () => ({
+    drawer: false,
+    loader: false,
+    items: [
+      { title: "Dashboard", icon: "mdi-view-dashboard" },
+      { title: "Photos", icon: "mdi-image" },
+      { title: "About", icon: "mdi-help-box" },
+    ],
+    right: null,
+  }),
+  methods: {
+    logout() {
+      this.clearUser;
+      this.$router.push("/")
+    }
+  },
+  components: {
+    OverlayMenu,
+  },
 };
 </script>
 
