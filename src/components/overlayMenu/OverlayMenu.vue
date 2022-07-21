@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list>
-      <v-list-item-group v-model="model">
+      <v-list-item-group v-model="model" color="primary">
         <v-list-item v-for="(item, i) in items" :key="i">
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
