@@ -76,7 +76,7 @@ const mutations = {
     state.token = "";
     state.isAutorized = false;
     localStorage.removeItem("token");
-    console.log("clearUser");
+    localStorage.removeItem("isRedirected");
   },
 };
 

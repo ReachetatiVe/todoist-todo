@@ -59,18 +59,25 @@ export default {
   methods: {
     logout() {
       this.clearUser;
-      this.$router.push("/");
+      this.$router.push("./auth");
     },
   },
   components: {
     OverlayMenu,
   },
   mounted() {
-    console.log("App Mounted");
     this.initializeStore;
-    if (this.isAutorized) {
+    if (this.isAutorized && this.$route.path != "/home") {
       this.$router.push("./home");
     }
+    let isRedirected;
+    try {
+      isRedirected = localStorage.getItem("isRedirected");
+    } catch (error) {
+      localStorage.removeItem("isRedirected");
+      this.$router.push("./auth");
+    }
+    if (!this.isAutorized && !isRedirected) this.$router.push("./auth");
   },
 };
 </script>

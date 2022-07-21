@@ -30,15 +30,16 @@
   </div>
 </template>
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters } from "vuex";
 
 export default {
   data: () => ({ dialog: true }),
-	computed: {
-    ...mapGetters('user', ['getClientId'])
+  computed: {
+    ...mapGetters("user", ["getClientId"]),
   },
   methods: {
     authorization() {
+      localStorage.setItem("isRedirected", true);
       window.location.href = `https://todoist.com/oauth/authorize?client_id=${this.getClientId}&scope=data:read_write,data:delete&state=secretstring`;
     },
   },
