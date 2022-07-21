@@ -67,6 +67,9 @@ export default {
   },
   mounted() {
     this.initializeStore;
+    if (this.isAutorized) {
+      this.$router.push("./home");
+    }
   },
 };
 </script>
