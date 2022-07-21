@@ -9,7 +9,7 @@
         <OverlayMenu />
       </v-navigation-drawer>
 
-      <v-app-bar app>
+      <v-app-bar app color="light-green lighten-3">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Главная</v-toolbar-title>
         <v-spacer></v-spacer>
