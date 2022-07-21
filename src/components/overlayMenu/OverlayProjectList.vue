@@ -19,7 +19,7 @@
       </v-expansion-panel-header>
       <v-expansion-panel-content>
         <v-list>
-          <v-list-item
+          <!-- <v-list-item
             v-for="project in getProjects"
             :key="'_' + project.id"
             link
@@ -27,7 +27,7 @@
               v-bind:info="project"
               v-on:toggleProjectBrowser="toggleShowProjectBrowser"
             />
-          </v-list-item>
+          </v-list-item> -->
         </v-list>
       </v-expansion-panel-content>
     </v-expansion-panel>

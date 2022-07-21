@@ -1,7 +1,11 @@
 <template>
   <v-app id="inspire">
     <template v-if="isAutorized">
-      <v-navigation-drawer v-model="drawer" app :style="{padding:' 0 !important'}">
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        :style="{ padding: ' 0 !important' }"
+      >
         <OverlayMenu />
       </v-navigation-drawer>
 
@@ -9,7 +13,9 @@
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Главная</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn outlined @click="logout"> <v-icon>mdi-logout</v-icon> Выйти</v-btn>
+        <v-btn outlined @click="logout">
+          <v-icon>mdi-logout</v-icon> Выйти</v-btn
+        >
       </v-app-bar>
     </template>
 
@@ -30,7 +36,7 @@
 </template>
 
 <script>
-import { mapGetters, mapMutations } from "vuex";
+import { mapActions, mapGetters, mapMutations } from "vuex";
 import OverlayMenu from "./components/overlayMenu/OverlayMenu.vue";
 
 export default {
@@ -38,6 +44,7 @@ export default {
     ...mapGetters("user", { isAutorized: "getIsAutorized" }),
     ...mapGetters({ isLoading: "getIsLoading" }),
     ...mapMutations("user", ["clearUser"]),
+    ...mapActions("user", ["initializeStore"]),
   },
   data: () => ({
     drawer: false,
@@ -52,11 +59,14 @@ export default {
   methods: {
     logout() {
       this.clearUser;
-      this.$router.push("/")
-    }
+      this.$router.push("/");
+    },
   },
   components: {
     OverlayMenu,
+  },
+  mounted() {
+    this.initializeStore;
   },
 };
 </script>

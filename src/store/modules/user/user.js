@@ -1,4 +1,5 @@
 import { TodoistApi } from "@doist/todoist-api-typescript";
+import router from '@/router';
 
 const state = () => ({
   api: null,
@@ -23,10 +24,24 @@ const getters = {
 // actions
 const actions = {
   getApi(context, token) {
+    console.log("getApi");
     const api = new TodoistApi(token);
-    context.commit("setApi", api);
     context.commit("setToken", token);
+    context.commit("setApi", api);
     context.commit("setIsAutorized", true);
+  },
+  initializeStore(context) {
+    if (!context.state.api) {
+      try {
+        const token = localStorage.getItem("token");
+        context.dispatch("getApi", token);
+      } catch (error) {
+        localStorage.removeItem("token");
+        router.push("/")
+        console.log(error);
+      }
+    }
+    return;
   },
 };
 
@@ -41,6 +56,7 @@ const mutations = {
   setToken(state, token) {
     if (token) {
       state.token = token;
+      localStorage.setItem("token", token);
     }
     return;
   },
