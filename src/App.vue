@@ -66,6 +66,7 @@ export default {
     OverlayMenu,
   },
   mounted() {
+    console.log("App Mounted");
     this.initializeStore;
     if (this.isAutorized) {
       this.$router.push("./home");

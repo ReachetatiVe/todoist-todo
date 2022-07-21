@@ -36,8 +36,8 @@ const actions = {
       let token = "";
       try {
         token = localStorage.getItem("token");
+        console.log(token);
         if (token) context.dispatch("getApi", token);
-        else router.push("/");
       } catch (error) {
         localStorage.removeItem("token");
         context.commit("setIsAutorized", false);
@@ -59,6 +59,7 @@ const mutations = {
   },
   setToken(state, token) {
     if (token) {
+      console.log("setToken");
       state.token = token;
       localStorage.setItem("token", token);
     }
@@ -75,6 +76,7 @@ const mutations = {
     state.token = "";
     state.isAutorized = false;
     localStorage.removeItem("token");
+    console.log("clearUser");
   },
 };
 
