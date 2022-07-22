@@ -18,6 +18,7 @@
         </div>
       </v-expansion-panel-header>
       <v-expansion-panel-content>
+        <!-- TODO: 1) Вынести list-item в ProjectItem 2) Прикрутить Loader во время открытия-->
         <v-list>
           <v-list-item
             v-for="project in getProjects"
