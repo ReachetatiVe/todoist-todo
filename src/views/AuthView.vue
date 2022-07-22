@@ -3,14 +3,14 @@
     <v-dialog v-model="dialog" persistent width="500">
       <v-card>
         <v-card-title class="text-h4 grey lighten-2">
-          <v-icon color="warning" large class="mr-3"
-            >mdi-alert-octagon-outline</v-icon
-          >
           Авторизация
         </v-card-title>
 
         <v-card-text class="text-h6 pt-3">
           <p>
+            <v-icon color="warning" class="mr-1 pb-1"
+              >mdi-alert-circle
+            </v-icon>
             Чтобы начать использовать приложение, вам необходимо иметь аккаунт
             на <a href="https://todoist.com/ru">Todoist</a>.
           </p>
