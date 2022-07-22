@@ -2,7 +2,11 @@ const state = () => ({
   projects: [],
 });
 
-const getters = {};
+const getters = {
+  getProjects: (state) => {
+    return state.projects;
+  },
+};
 
 const actions = {
   loadAllProjects(context) {
