@@ -23,6 +23,7 @@
             v-for="project in getProjects"
             :key="'_' + project.id"
             link
+            @click="openProject(project.id)"
           >
             <ProjectItem :project="project" />
           </v-list-item>
@@ -42,6 +43,17 @@ export default {
   methods: {
     createNewProject() {
       this.$emit("resetSelectedTab");
+    },
+    openProject(id) {
+      const projectIdUrl = this.$route.query.id;
+
+      if (
+        projectIdUrl !== null &&
+        projectIdUrl !== undefined &&
+        projectIdUrl != id
+      ) {
+        this.$router.push(`./project?id=${id}`);
+      }
     },
   },
   components: {

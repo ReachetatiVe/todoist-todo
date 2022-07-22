@@ -42,7 +42,6 @@ export default {
   }),
   methods: {
     resetSelectedTab() {
-      console.log("resetSelectedTab");
       this.selectedTab = -1;
     },
   },
