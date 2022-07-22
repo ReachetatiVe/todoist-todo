@@ -45,15 +45,9 @@ export default {
       this.$emit("resetSelectedTab");
     },
     openProject(id) {
-      const projectIdUrl = this.$route.query.id;
-
-      if (
-        projectIdUrl !== null &&
-        projectIdUrl !== undefined &&
-        projectIdUrl != id
-      ) {
+      const fullPath = this.$route.fullPath;
+      if (fullPath != `/project?id=${id}`)
         this.$router.push(`./project?id=${id}`);
-      }
     },
   },
   components: {
