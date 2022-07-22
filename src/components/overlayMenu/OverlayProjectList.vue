@@ -12,7 +12,7 @@
             fab
             dark
             color="indigo"
-            @click.stop="showOverlay = true"
+            @click.stop="createNewProject"
             ><v-icon hover>mdi-plus</v-icon>
           </v-btn>
         </div>
@@ -23,8 +23,8 @@
             v-for="project in getProjects"
             :key="'_' + project.id"
             link
-            >
-            <ProjectItem :project="project"/>
+          >
+            <ProjectItem :project="project" />
           </v-list-item>
         </v-list>
       </v-expansion-panel-content>
@@ -39,9 +39,13 @@ export default {
   computed: {
     ...mapGetters("projects", ["getProjects"]),
   },
+  methods: {
+    createNewProject() {
+      this.$emit("resetSelectedTab");
+    },
+  },
   components: {
-    ProjectItem
-  }
+    ProjectItem,
+  },
 };
-
 </script>

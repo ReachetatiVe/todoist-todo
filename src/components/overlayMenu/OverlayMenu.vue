@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-list>
-      <v-list-item-group v-model="model" color="primary">
+      <v-list-item-group v-model="selectedTab" color="primary">
         <v-list-item v-for="(item, i) in items" :key="i">
           <v-list-item-icon>
             <v-icon v-text="item.icon"></v-icon>
@@ -10,14 +10,13 @@
             <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <ProjectList @resetSelectedTab="resetSelectedTab" />
       </v-list-item-group>
     </v-list>
-    <v-divider></v-divider>
-    <ProjectList/>
   </div>
 </template>
 <script>
-import ProjectList from './OverlayProjectList.vue'
+import ProjectList from "./OverlayProjectList.vue";
 
 export default {
   data: () => ({
@@ -39,10 +38,16 @@ export default {
         text: "Drafts",
       },
     ],
-    model: 1,
+    selectedTab: 1,
   }),
+  methods: {
+    resetSelectedTab() {
+      console.log("resetSelectedTab");
+      this.selectedTab = -1;
+    },
+  },
   components: {
-    ProjectList
-  }
+    ProjectList,
+  },
 };
 </script>
