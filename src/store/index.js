@@ -6,6 +6,7 @@ import mutations from "./mutations.js";
 import getters from "./getters.js";
 import user from "./modules/user/index.js";
 import projects from "./modules/projects/projects.js";
+import tasks from "./modules/tasks/index.js";
 
 Vue.use(Vuex);
 
@@ -17,5 +18,6 @@ export default new Vuex.Store({
   modules: {
     user,
     projects,
+    tasks,
   },
 });

@@ -25,8 +25,8 @@ const actions = {
 };
 
 const mutations = {
-  setProjects(state, projectsArr) {
-    state.projects = projectsArr;
+  setProjects(state, projectsArr = []) {
+    state.projects = [...projectsArr];
   },
 };
 

@@ -15,7 +15,6 @@ export default {
       let token = "";
       try {
         token = localStorage.getItem("token");
-        console.log(token);
         if (token) context.dispatch("getApi", token);
       } catch (error) {
         localStorage.removeItem("token");
