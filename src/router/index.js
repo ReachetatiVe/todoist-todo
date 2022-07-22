@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import AuthView from "../views/AuthView.vue";
+import ProjectBrowserView from "../views/ProjectBrowserView.vue";
 
 Vue.use(VueRouter);
 
@@ -19,6 +20,11 @@ const routes = [
     path: "/home",
     name: "home",
     component: () => import("../views/HomeView.vue"),
+  },
+  {
+    path: "/project",
+    name: "projectBrowser",
+    component: ProjectBrowserView,
   },
   {
     path: "/about",
