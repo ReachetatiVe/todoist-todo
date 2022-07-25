@@ -1,6 +1,8 @@
 <template>
   <v-expansion-panel>
-    <v-expansion-panel-header>{{section.name}}</v-expansion-panel-header>
+    <v-expansion-panel-header>
+      <div class="text-h6">{{ section.name }}</div>
+    </v-expansion-panel-header>
     <v-expansion-panel-content>
       Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
       tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
