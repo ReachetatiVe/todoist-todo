@@ -9,11 +9,13 @@ export default {
   methods: {
     ...mapActions("projects", ["loadAllProjects"]),
     ...mapActions("tasks", ["loadAllTasks"]),
+    ...mapActions("sections", ["loadAllSections"]),
     ...mapMutations(["setIsLoading"]),
   },
   mounted() {
     this.setIsLoading(true);
     this.loadAllProjects();
+    this.loadAllSections();
     this.loadAllTasks();
     this.setIsLoading(false);
   },
