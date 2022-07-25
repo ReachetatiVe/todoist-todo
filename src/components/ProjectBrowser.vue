@@ -1,47 +1,68 @@
 <template>
   <div class="pl-3">
-    <!-- <div class="text-center d-flex pb-4">
-        <v-btn @click="all"> all </v-btn>
-        <div>{{ panel }}</div>
-        <v-btn @click="none"> none </v-btn>
-      </div> -->
     <div class="d-flex justify-space-between align-center pb-2 pt-2 pr-2">
-      <h2>Имя проекта</h2>
+      <h2>{{ getProject?.name }}</h2>
       <v-btn plain small width="150" @click="togglePanels">
-        {{ panel.length === 0 ? "Развернуть" : "Свернуть" }}
+        {{ panels.length === 0 ? "Развернуть" : "Свернуть" }}
         <v-icon small>
-          {{ panel.length === 0 ? "mdi-chevron-down" : "mdi-chevron-up" }}
+          {{ panels.length === 0 ? "mdi-chevron-down" : "mdi-chevron-up" }}
         </v-icon>
       </v-btn>
     </div>
 
-    <v-expansion-panels v-model="panel" multiple>
-      <v-expansion-panel v-for="(item, i) in items" :key="i">
-        <v-expansion-panel-header>Header {{ item }}</v-expansion-panel-header>
-        <v-expansion-panel-content>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.
-        </v-expansion-panel-content>
-      </v-expansion-panel>
+    <!-- Sections -->
+    <v-expansion-panels v-model="panels" multiple>
+      <Section v-for="(item, i) in getSections" :key="i" :section="item" />
     </v-expansion-panels>
   </div>
 </template>
 <script>
+import { mapGetters } from "vuex";
+
+import Section from "./SectionEntry.vue";
 export default {
   data() {
     return {
-      panel: [],
+      panels: [],
       items: 5,
+      projectId: Number,
     };
+  },
+  computed: {
+    ...mapGetters("projects", { projects: "getProjects" }),
+    ...mapGetters("sections", { sections: "getSections" }),
+
+    getProject() {
+      return this.projects.find((item) => {
+        return item.id === this.projectId;
+      });
+    },
+    getSections() {
+      return this.sections.filter((section) => {
+        return section.projectId === this.projectId;
+      });
+    },
   },
   methods: {
     togglePanels() {
-      this.panel.length === 0
-        ? (this.panel = [...Array(this.items).keys()].map((k, i) => i))
-        : (this.panel = []);
+      this.panels.length === 0
+        ? (this.panels = [...Array(this.items).keys()].map((k, i) => i))
+        : (this.panels = []);
     },
+  },
+  watch: {
+    $route: {
+      handler: function (route) {
+        if (route.query.id) {
+          this.projectId = Number(route.query.id);
+        }
+      },
+      deep: true,
+      immediate: true,
+    },
+  },
+  components: {
+    Section,
   },
 };
 </script>
