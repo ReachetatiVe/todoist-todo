@@ -46,7 +46,7 @@ export default {
   methods: {
     togglePanels() {
       this.panels.length === 0
-        ? (this.panels = [...Array(this.items).keys()].map((k, i) => i))
+        ? (this.panels = [...Array(this.getSections).keys()].map((k, i) => i))
         : (this.panels = []);
     },
   },
