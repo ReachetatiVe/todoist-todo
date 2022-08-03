@@ -12,6 +12,7 @@
 
     <!-- Sections -->
     <v-expansion-panels v-model="panels" multiple>
+      <Section :section="{ name: 'Задачи без секции' }"></Section>
       <Section v-for="(item, i) in getSections" :key="i" :section="item" />
     </v-expansion-panels>
   </div>
@@ -24,7 +25,6 @@ export default {
   data() {
     return {
       panels: [],
-      items: 5,
       projectId: Number,
     };
   },
@@ -46,7 +46,9 @@ export default {
   methods: {
     togglePanels() {
       this.panels.length === 0
-        ? (this.panels = [...Array(this.getSections).keys()].map((k, i) => i))
+        ? (this.panels = [...Array(this.getSections.length + 1).keys()].map(
+            (k, i) => i
+          ))
         : (this.panels = []);
     },
   },
