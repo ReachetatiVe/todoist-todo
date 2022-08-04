@@ -4,15 +4,15 @@
       <div class="text-h6">{{ section.name }}</div>
     </v-expansion-panel-header>
     <v-expansion-panel-content>
-      <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-      tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-      veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-      commodo consequat. -->
-      <Task />
+      <v-list>
+        <!--  -->
+        <Task v-for="task in getTasks" :key="task.id" :task="task"/>
+      </v-list>
     </v-expansion-panel-content>
   </v-expansion-panel>
 </template>
 <script>
+import { mapGetters } from "vuex";
 import Task from "./TaskEntry.vue";
 
 export default {
@@ -24,6 +24,20 @@ export default {
   },
 
   data: () => ({}),
+
+  computed: {
+    ...mapGetters("tasks", { tasks: "getTasks" }),
+    getTasks() {
+      return this.tasks.filter((task) => {
+        return (
+          task.sectionId === this.section.id &&
+          task.projectId === this.section.projectId &&
+          !task.parentId
+        );
+      });
+    },
+  },
+  methods: {},
 
   components: {
     Task,

@@ -12,7 +12,14 @@
 
     <!-- Sections -->
     <v-expansion-panels v-model="panels" multiple>
-      <Section :section="{ name: 'Задачи без секции' }"></Section>
+      <Section
+        :section="{
+          id: 0,
+          order: 0,
+          name: 'Задачи без секции',
+          projectId: projectId,
+        }"
+      ></Section>
       <Section v-for="(item, i) in getSections" :key="i" :section="item" />
     </v-expansion-panels>
   </div>
