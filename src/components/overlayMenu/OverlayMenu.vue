@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-list>
+    <v-list shaped>
       <v-list-item-group v-model="selectedTab" color="primary">
         <v-list-item v-for="(item, i) in items" :key="i">
           <v-list-item-icon>
@@ -10,6 +10,7 @@
             <v-list-item-title v-text="item.text"></v-list-item-title>
           </v-list-item-content>
         </v-list-item>
+        <!-- Todo: отрефакторить оверлей меню -->
         <ProjectList @resetSelectedTab="resetSelectedTab" />
       </v-list-item-group>
     </v-list>

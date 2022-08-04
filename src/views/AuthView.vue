@@ -8,9 +8,7 @@
 
         <v-card-text class="text-h6 pt-3">
           <p>
-            <v-icon color="warning" class="mr-1 pb-1"
-              >mdi-alert-circle
-            </v-icon>
+            <v-icon color="warning" class="mr-1 pb-1">mdi-alert-circle </v-icon>
             Чтобы начать использовать приложение, вам необходимо иметь аккаунт
             на <a href="https://todoist.com/ru">Todoist</a>.
           </p>
@@ -21,7 +19,7 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn large color="primary" text @click="authorization">
+          <v-btn large rounded color="primary" text @click="authorization">
             <v-icon>mdi-login</v-icon> Войти
           </v-btn>
         </v-card-actions>

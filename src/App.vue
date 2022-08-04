@@ -13,7 +13,7 @@
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Главная</v-toolbar-title>
         <v-spacer></v-spacer>
-        <v-btn @click="logout" color="primary lighten-2">
+        <v-btn @click="logout" color="primary lighten-2" rounded>
           <v-icon>mdi-logout</v-icon> Выйти</v-btn
         >
       </v-app-bar>

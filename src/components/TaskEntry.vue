@@ -6,28 +6,65 @@
       class="pr-0"
       :class="{ 'mb-3': !task.parentId, 'mb-1': task.parentId }"
     >
-      <v-card-title class="pb-0 pt-0">
+      <v-card-title class="pb-0">
         <div
-          class="d-flex align-center justify-space-between"
+          class="d-flex align-center justify-space-between mb-2"
           style="width: 100%"
         >
-          <v-checkbox
+          <div>
+            {{ task.content }}
+          </div>
+          <!-- <v-checkbox
             hover
             :label="`${task.content}`"
             style="min-width: 90%"
-          ></v-checkbox>
+          ></v-checkbox> -->
           <div class="controls">
-            <v-btn icon>
+            <v-hover v-slot="{ hover }">
+              <v-btn
+                rounded
+                class="mr-2"
+                :style="{ 'background-color': hover ? '#90CAF9' : '#f5f5f5' }"
+              >
+                <v-icon>mdi-pencil-outline</v-icon>
+                Изменить
+              </v-btn>
+            </v-hover>
+            <v-hover v-slot="{ hover }">
+              <v-btn
+                rounded
+                class="mr-2"
+                :style="{ 'background-color': hover ? '#90CAF9' : '#f5f5f5' }"
+              >
+                <v-icon>mdi-close-octagon-outline</v-icon>
+                Закрыть
+              </v-btn>
+            </v-hover>
+            <!-- <v-btn rounded>
+              <v-icon>mdi-close-octagon-outline</v-icon>
+              Закрыть
+            </v-btn> -->
+            <!-- <v-btn icon small>
               <v-icon>mdi-pencil-outline</v-icon>
             </v-btn>
-            <v-btn icon>
+            <v-btn icon small>
               <v-icon>mdi-close-octagon-outline</v-icon>
-            </v-btn>
+            </v-btn> -->
           </div>
         </div>
       </v-card-title>
       <v-card-text class="pb-0 pr-1">
-        <div class="task-description">{{ task.description }}</div>
+        <v-divider></v-divider>
+        <div class="task-description mb-2">{{ task.description }}</div>
+        <div style="max-width: 50%">
+          <v-combobox
+            v-model="select"
+            :items="items"
+            label="labels"
+            multiple
+            chips
+          ></v-combobox>
+        </div>
         <v-list class="pb-0">
           <v-list-item
             v-for="subtask in getSubtasks"
@@ -51,7 +88,10 @@ export default {
       required: true,
     },
   },
-  data: () => ({}),
+  data: () => ({
+    select: ["Vuetify", "Programming"],
+    items: ["Programming", "Design", "Vue", "Vuetify"],
+  }),
   computed: {
     ...mapGetters("tasks", { tasks: "getTasks" }),
     getSubtasks() {

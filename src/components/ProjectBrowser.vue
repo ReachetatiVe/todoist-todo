@@ -19,7 +19,7 @@
           name: 'Задачи без секции',
           projectId: projectId,
         }"
-      ></Section>
+      />
       <Section v-for="(item, i) in getSections" :key="i" :section="item" />
     </v-expansion-panels>
   </div>
