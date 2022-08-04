@@ -6,7 +6,7 @@
     <v-expansion-panel-content>
       <v-list>
         <!--  -->
-        <Task v-for="task in getTasks" :key="task.id" :task="task"/>
+        <Task v-for="task in getTasks" :key="task.id" :task="task" />
       </v-list>
     </v-expansion-panel-content>
   </v-expansion-panel>
